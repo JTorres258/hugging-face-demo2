@@ -1,7 +1,7 @@
 ---
 title: Demo
 emoji: 🐼
-colorFrom: orange
+colorFrom: pink
 colorTo: green
 sdk: gradio
 sdk_version: "0.1"
