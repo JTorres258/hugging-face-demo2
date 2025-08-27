@@ -1,10 +1,7 @@
-import os
-os.environ["TRANSFORMERS_NO_PYTORCH"] = "1" 
-
 from transformers import pipeline
 import gradio as gr
 
-model = pipeline("summarization", model="t5-base", tokenizer="t5-base", framework="tf")
+model = pipeline("summarization")
 
 def predict(prompt):
     summary = model(prompt)[0]["summary_text"]
