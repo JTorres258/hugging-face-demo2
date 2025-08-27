@@ -1,23 +1,34 @@
 name: Sync to Hugging Face hub
+
 on:
   push:
     branches: [main]
-
-  # to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Add remote 
+          lfs: true
+
+      - name: Add HF credentials (token)
         env:
           HF: ${{ secrets.HF }}
-        run: git remote add space https://JTorres258:$HF@huggingface.co/spaces/JTorres258/demo2
-      - name: Push to hub
-        env:
-          HF: ${{ secrets.HF }}
-        run: git push --force https://JTorres258:$HF@huggingface.co/spaces/JTorres258/demo2 main
+        run: |
+          # Store credentials so pushes to huggingface.co use the token automatically
+          echo "https://JTorres258:${HF}@huggingface.co" > ~/.git-credentials
+
+      - name: Add HF remote
+        run: |
+          git remote add space https://huggingface.co/spaces/JTorres258/demo2
+          # If remote already exists (reruns), update the URL
+          git remote set-url space https://huggingface.co/spaces/JTorres258/demo2 || true
+
+      - name: Push to HF Space
+        run: |
+          # Push local main to remote main (force if you want exact mirror)
+          git push --force space main
