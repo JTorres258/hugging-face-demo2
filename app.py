@@ -1,3 +1,6 @@
+import os
+os.environ["TRANSFORMERS_NO_PYTORCH"] = "1" 
+
 from transformers import pipeline
 import gradio as gr
 
