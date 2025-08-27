@@ -1,6 +1,6 @@
 ---
 title: Demo
-emoji: U+1F43C
+emoji: 🐼
 colorFrom: orange
 colorTo: green
 sdk: gradio
