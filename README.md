@@ -4,10 +4,10 @@ emoji: 🐼
 colorFrom: pink
 colorTo: green
 sdk: gradio
-sdk_version: "0.1"
+sdk_version: 5.44.0
 app_file: app.py
 pinned: false
-license: cc
+license:  cc-by-4.0
 ---
 
 
